@@ -25,7 +25,8 @@
     <!-- ====================  BEGIN: Include add-to-homescreen resources  ==================== -->
 
     <link rel="stylesheet" href="./add-to-homescreen.min.css" />
-    <script defer src="add-to-homescreen_zh_CN.min.js"></script><link href="add-to-homescreen.min.css" rel="stylesheet">
+    <script defer src="add-to-homescreen_zh_CN.min.js"></script>
+    <link href="add-to-homescreen.min.css" rel="stylesheet">
 <!-- ====================  END: Include add-to-homescreen resources  ==================== -->
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
@@ -311,19 +312,42 @@
 
 <!-- ====================  BEGIN: initialize add-to-homescreen library  ==================== -->
 
+<!--<script>-->
+<!--    window.addEventListener("load", function () {-->
+<!--        window.AddToHomeScreenInstance = window.AddToHomeScreen({-->
+<!--            appName: "Aardvark", // Name of the app. [Required]-->
+<!--            appNameDisplay: "standalone", // Display position of the app name [Optional]-->
+<!--            appIconUrl: "./assets/sample/img/aardvark-logo.png", // App icon link (square, at least 40 x 40 pixels) [Required]-->
+<!--            assetUrl: "./assets/img/", // Link to directory of library image assets [Required]-->
+<!--            maxModalDisplayCount: -1, // If set, the modal will only show this many times [Optional. Default: -1 (no limit).]-->
+<!--            // (Debugging: Use this.clearModalDisplayCount() to reset the count)-->
+<!--        });-->
+<!--        window.AddToHomeScreenInstance.show(); // popup is only shown if web app is not already added to homescreen-->
+<!--    });-->
+<!--</script>-->
+<!-- ====================  END: initialize add-to-homescreen library  ==================== -->
+
 <script>
-    window.addEventListener("load", function () {
+    document.addEventListener('DOMContentLoaded', function () {
         window.AddToHomeScreenInstance = window.AddToHomeScreen({
-            appName: "Aardvark", // Name of the app. [Required]
-            appNameDisplay: "standalone", // Display position of the app name [Optional]
-            appIconUrl: "./assets/sample/img/aardvark-logo.png", // App icon link (square, at least 40 x 40 pixels) [Required]
-            assetUrl: "./assets/img/", // Link to directory of library image assets [Required]
-            maxModalDisplayCount: -1, // If set, the modal will only show this many times [Optional. Default: -1 (no limit).]
-            // (Debugging: Use this.clearModalDisplayCount() to reset the count)
+            appName: 'Aardvark',                                   // 应用名称。
+                                                                   // 必填。
+            appNameDisplay: 'standalone',                          // 如果设置为'standalone'（默认），应用名称将单独显示
+                                                                   // 在“安装应用”标题下方。如果设置为'inline'，则
+                                                                   // 应用名称将显示在单行中，例如“安装MyApp”
+                                                                   // 可选。默认值为'standalone'
+            appIconUrl: 'apple-touch-icon.png',                    // 应用图标链接（方形，至少40 x 40像素）。
+                                                                   // 必填。
+            assetUrl: 'https://cdn.jsdelivr.net/gh/philfung/add-to-homescreen@2.2/dist/assets/img/',  // 库图像资产的目录链接。
+
+            maxModalDisplayCount: -1                               // 如果设置，模态将仅显示此数量。
+                                                                   // 可选。默认值：-1（无限制）。 （调试：使用this.clearModalDisplayCount()重置计数）
         });
-        window.AddToHomeScreenInstance.show(); // popup is only shown if web app is not already added to homescreen
+
+      let  ret = window.AddToHomeScreenInstance.show('en');        // 向用户显示“添加到主屏幕”的指示，或者如果已经添加到主屏幕则不执行任何操作
+                                                                // 唯一的参数是要显示消息的语言（当前仅支持'da'、'de'、'en'、'es'、'fr'、'he'、'it'、'pt'、'ru'、'cs'、'ko'、'lv'、'pl'、'vn'、'zh_CN'、'zh_HK'和'zh_TW'）。
     });
 </script>
-<!-- ====================  END: initialize add-to-homescreen library  ==================== -->
+
 </body>
 </html>
